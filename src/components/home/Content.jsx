@@ -25,14 +25,15 @@ function Content() {
                 <div className='flex flex-wrap  my-3'>
                     {
                         products.map((product, index) => (
-                           <div className='mx-[6px]'>
-                            <Product
-                           index={index}
-                           product={product}
-                           />
-                          
-                           </div>
-                           ))
+                            <div className='mx-[6px]'>
+                                <Product
+                                    index={index}
+                                    product={product}
+
+                                />
+
+                            </div>
+                        ))
                     }
                 </div>
 
