@@ -1,8 +1,19 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getProducts } from '../../redux/productSlice'
 import ContentContainer from '../../containers/ContentContainer'
+import Product from './Product'
+
 
 function Content() {
+    const { products } = useSelector((state) => state.products)
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getProducts())
+    }, [dispatch])
+    console.log(products, "ürünler")
+
     return (
         <ContentContainer>
             <div>
@@ -11,8 +22,20 @@ function Content() {
                     <div className='text-blue-800 hover:underline cursor-pointer'> Tüm vitrin ilanlarını göster</div>
                 </div>
 
-                    
-            
+                <div className='flex flex-wrap  my-3'>
+                    {
+                        products.map((product, index) => (
+                           <div className='mx-[6px]'>
+                            <Product
+                           index={index}
+                           product={product}
+                           />
+                          
+                           </div>
+                           ))
+                    }
+                </div>
+
             </div>
         </ContentContainer>
     )

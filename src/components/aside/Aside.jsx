@@ -62,7 +62,8 @@ function Aside() {
                                 className="p-2 flex hover:underline "
                                 onClick={toggleMenu}
                             >
-                                {isOpen ? "Kapat" : "Tümünü Göster"}<img src="\src\assets\dropdown.png" className='h-6' />
+                                {isOpen ? "Kapat" : "Tümünü Göster"}
+                                {isOpen ? <img src="\src\assets\dropdown.png" className='h-6 rotate-180' /> : <img src="\src\assets\dropdown.png" className='h-6 ' />}
                             </button>
                         </div>
                     </div>
@@ -122,7 +123,7 @@ function Aside() {
                                 onClick={toggleMenu1}
                             >
                                 {isOpen1 ? "Kapat" : "Tümünü Göster"}
-                                <img src="\src\assets\dropdown.png" className='h-6' />
+                                {isOpen1 ? <img src="\src\assets\dropdown.png" className='h-6 rotate-180' /> : <img src="\src\assets\dropdown.png" className='h-6 ' />}
                             </button>
                         </div>
                     </div>
@@ -179,7 +180,7 @@ function Aside() {
                                 onClick={toggleMenu1}
                             >
                                 {isOpen1 ? "Kapat" : "Tümünü Göster"}
-                                <img src="\src\assets\dropdown.png" className='h-6' />
+                                {isOpen1 ? <img src="\src\assets\dropdown.png" className='h-6 rotate-180' /> : <img src="\src\assets\dropdown.png" className='h-6 ' />}
                             </button>
                         </div>
                     </div>
