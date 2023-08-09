@@ -29,7 +29,7 @@ function Content() {
                                 <Product
                                     index={index}
                                     product={product}
-
+                                    key={index}
                                 />
 
                             </div>

@@ -8,6 +8,8 @@ import PageContainers from '../containers/PageContainers';
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductDetail } from '.././redux/productSlice';
 import DetailSlider from '../components/Detail/DetailSlider';
+import UserCard from '../components/Detail/UserCard';
+import Footer from '../components/footer/Footer';
 
 function Detail() {
   const { id } = useParams();
@@ -28,8 +30,12 @@ function Detail() {
         <div className='flex my-20'>
           <DetailSlider image={productDetail.image} />
           <DetailProduct productDetail={productDetail} />
+          <UserCard />
         </div>
+        <DetailContent productDetail={productDetail} />
+
       </PageContainers>
+      <Footer />
     </div>
   )
 }

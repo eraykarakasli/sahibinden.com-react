@@ -3,6 +3,7 @@ import Navbar from '../components/navbar/Navbar'
 import PageContainers from '../containers/PageContainers'
 import Aside from '../components/aside/Aside'
 import Content from '../components/home/Content'
+import Footer from '../components/footer/Footer'
 
 
 function Home() {
@@ -15,6 +16,7 @@ function Home() {
                     <Content className='inline w-2/3 p-4 bg-blue-200' />
                 </div>
             </PageContainers>
+            <Footer/>
 
         </div>
     )
