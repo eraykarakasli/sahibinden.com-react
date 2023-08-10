@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { BsApple } from 'react-icons/bs'
 import { Formik } from 'formik'
-
+import * as Yup from 'yup'
 
 function Login() {
     const navigate = useNavigate();
@@ -15,69 +15,118 @@ function Login() {
                 <div >
                     <div className='justify-center flex '>
                         <div className='shadow-lg bg-[#FFE800] text-2xl font-semibold justify-center flex p-1 my-10 cursor-pointer w-48' onClick={() => navigate('/')}> mahibinden.com</div>
-
                     </div>
 
-                    <div className='bg-white w-[550px] p-8 shadow-xl border'>
-                        <div className='justify-center flex text-3xl font-bold pt-7'>Giriş Yap</div>
-                        
-                        <input
-                            id='email'
-                            type="text"
-                            placeholder='E-posta...'
-                            className='border w-[480px] h-12 mt-12 shadow-lg'
-                        />
+                    <Formik
+                        initialValues={{
+                            email: "",
+                            password: "",
+                            agree: false,
+                        }}
 
-                       
-                        <input
-                            id='password'
-                            type="text"
-                            placeholder='Şifre...'
-                            className='border w-[480px] h-12 mt-6 shadow-lg'
-                        />
+                        validationSchema={
+                            Yup.object({
+                                email: Yup.string().email().required("E-posta adresinizi veya kullanıcı adınızı girin."),
+                                password: Yup.string().required("Şifrenizi girin."),
+                                agree: Yup.boolean()
+                            })
+                        }
+
+                        onSubmit={(values, { resetForm, setSubmitting }) => {
+                            console.log(values);
+                            setTimeout(() => {
+                                resetForm();
+                                setSubmitting(false);
+                            }, 2000)
+                        }}
+                    >
+                        {({ values, errors, handleSubmit, handleReset, handleChange, dirty, isSubmitting, touched }) => (
+                            <form 
+                            onSubmit={handleSubmit}
+                            className='bg-white w-[550px] p-8 shadow-xl border'
+                            >
+                                <div className='justify-center flex text-3xl font-bold pt-7'>Giriş Yap</div>
+
+                                <input
+                                    id='email'
+                                    type="text"
+                                    placeholder='E-posta...'
+                                    className='border w-[480px] h-12 mt-12 shadow-lg'
+                                    value={values.email}
+                                    onChange={handleChange}
+                                />
+                                    {
+                                        errors.email && touched.email && (
+                                            <div className='text-red-500 text-sm p-2'>{errors.email}</div>
+                                        )
+                                    }
+
+                                <input
+                                    id='password'
+                                    type="password"
+                                    placeholder='Şifre...'
+                                    className='border w-[480px] h-12 mt-6 shadow-lg'
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    
+                                />
+                                 {
+                                        errors.password && touched.password && (
+                                            <div className='text-red-500 text-sm p-2'>{errors.password}</div>
+                                        )
+                                    }
 
 
 
-                        <div className='mt-4 flex justify-between'>
-                            <div>
-                                <input id="agree" type="checkbox" />
-                                <label htmlFor="agree" className='text-sm items-center ml-1'> Oturum açık kalsın</label>
-                            </div>
-                            <a href="#" className='text-blue-600 hover:underline text-sm'>Şifremi unuttum</a>
-                        </div>
+                                <div className='mt-4 flex justify-between'>
+                                    <div>
+                                        <input 
+                                        id="agree" 
+                                        type="checkbox" 
+                                        value={values.agree}
+                                        onChange={handleChange}
+                                        />
+                                        <label htmlFor="agree" className='text-sm items-center ml-1'> Oturum açık kalsın</label>
+                                    </div>
+                                    <a href="#" className='text-blue-600 hover:underline text-sm'>Şifremi unuttum</a>
+                                </div>
 
-                        <button
-                            type="submit"
-                            className='w-full bg-[#438ED8] h-12 rounded-md mt-5 shadow-lg text-white hover:bg-[#4594DE]'
-                        >Giriş Yap</button>
+                                <button
+                                    type="submit"
+                                    className='w-full bg-[#438ED8] h-12 rounded-md mt-5 shadow-lg text-white hover:bg-[#4594DE]'
+                                    disabled={!dirty || isSubmitting}
 
-                        <div className='my-10 flex justify-center '>
+                                >Giriş Yap</button>
 
-                            <div> Henüz hesabın yok mu? <a href="#" className='text-blue-600 font-semibold hover:underline'>Hesap aç </a></div>
-                        </div>
+                                <div className='my-10 flex justify-center '>
 
-
-
-                        <div className='flex justify-center items-center text-lg'>
-
-                            <span>Veya</span>
-
-                        </div>
-
-                        <a href='#' className='rounded-md shadow-lg  border w-full h-12 m-2 mt-10 flex items-center justify-center gap-2 hover:bg-gray-100'><FcGoogle /><p> Google ile giriş yap</p></a>
-
-                        <a href='#' className='rounded-md shadow-lg border w-full h-12 m-2 mt-4 flex items-center justify-center gap-2 hover:bg-gray-100'><BsApple /> <p>Apple ile giriş yap</p></a>
+                                    <div> Henüz hesabın yok mu? <a href="#" className='text-blue-600 font-semibold hover:underline'>Hesap aç </a></div>
+                                </div>
 
 
 
+                                <div className='flex justify-center items-center text-lg'>
 
-                        <div className='text-xs p-3 px-4 text-gray-500'>
-                            <p>Google veya Apple kimliğinizle bir sonraki adıma geçmeniz halinde <a href="#" className='text-blue-600 hover:underline'>Bireysel Hesap Sözleşmesi ve Ekleri</a>'ni kabul etmiş sayılırsınız.</p>
-                        </div>
-                        <div className='flex justify-center my-6 text-lg'>
-                            <p>QR kod ile mobil uygulamadan <a href="#" className='text-blue-600 hover:underline'> giriş yap </a></p>
-                        </div>
-                    </div>
+                                    <span>Veya</span>
+
+                                </div>
+
+                                <a href='#' className='rounded-md shadow-lg  border w-full h-12 m-2 mt-10 flex items-center justify-center gap-2 hover:bg-gray-100'><FcGoogle /><p> Google ile giriş yap</p></a>
+
+                                <a href='#' className='rounded-md shadow-lg border w-full h-12 m-2 mt-4 flex items-center justify-center gap-2 hover:bg-gray-100'><BsApple /> <p>Apple ile giriş yap</p></a>
+
+
+
+
+                                <div className='text-xs p-3 px-4 text-gray-500'>
+                                    <p>Google veya Apple kimliğinizle bir sonraki adıma geçmeniz halinde <a href="#" className='text-blue-600 hover:underline'>Bireysel Hesap Sözleşmesi ve Ekleri</a>'ni kabul etmiş sayılırsınız.</p>
+                                </div>
+                                <div className='flex justify-center my-6 text-lg'>
+                                    <p>QR kod ile mobil uygulamadan <a href="#" className='text-blue-600 hover:underline'> giriş yap </a></p>
+                                </div>
+                            </form>
+                        )}
+                    </Formik>
                     <p className='text-xs p-3 px-4 text-gray-500'>
                         Tarafınızca sağlanmış olan kişisel verileriniz hesap açma esnasında kimlik doğrulama tercihinize bağlı olarak Google veya Apple vasıtasıyla işlenebilecektir. Kişisel verilerin korunması hakkında detaylı bilgiye <a href="#" className='text-blue-600 hover:underline'> buradan</a> ulaşabilirsiniz.
                     </p>
