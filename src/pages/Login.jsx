@@ -41,9 +41,9 @@ function Login() {
                         }}
                     >
                         {({ values, errors, handleSubmit, handleReset, handleChange, dirty, isSubmitting, touched }) => (
-                            <form 
-                            onSubmit={handleSubmit}
-                            className='bg-white w-[550px] p-8 shadow-xl border'
+                            <form
+                                onSubmit={handleSubmit}
+                                className='bg-white w-[550px] p-8 shadow-xl border'
                             >
                                 <div className='justify-center flex text-3xl font-bold pt-7'>Giriş Yap</div>
 
@@ -51,40 +51,40 @@ function Login() {
                                     id='email'
                                     type="text"
                                     placeholder='E-posta...'
-                                    className='border w-[480px] h-12 mt-12 shadow-lg'
+                                    className='border w-[480px] h-12 mt-12 shadow-lg p-2'
                                     value={values.email}
                                     onChange={handleChange}
                                 />
-                                    {
-                                        errors.email && touched.email && (
-                                            <div className='text-red-500 text-sm p-2'>{errors.email}</div>
-                                        )
-                                    }
+                                {
+                                    errors.email && touched.email && (
+                                        <div className='text-red-500 text-sm p-2'>{errors.email}</div>
+                                    )
+                                }
 
                                 <input
                                     id='password'
                                     type="password"
                                     placeholder='Şifre...'
-                                    className='border w-[480px] h-12 mt-6 shadow-lg'
+                                    className='border w-[480px] h-12 mt-6 shadow-lg p-2'
                                     value={values.password}
                                     onChange={handleChange}
-                                    
+
                                 />
-                                 {
-                                        errors.password && touched.password && (
-                                            <div className='text-red-500 text-sm p-2'>{errors.password}</div>
-                                        )
-                                    }
+                                {
+                                    errors.password && touched.password && (
+                                        <div className='text-red-500 text-sm p-2'>{errors.password}</div>
+                                    )
+                                }
 
 
 
                                 <div className='mt-4 flex justify-between'>
                                     <div>
-                                        <input 
-                                        id="agree" 
-                                        type="checkbox" 
-                                        value={values.agree}
-                                        onChange={handleChange}
+                                        <input
+                                            id="agree"
+                                            type="checkbox"
+                                            value={values.agree}
+                                            onChange={handleChange}
                                         />
                                         <label htmlFor="agree" className='text-sm items-center ml-1'> Oturum açık kalsın</label>
                                     </div>
@@ -105,11 +105,10 @@ function Login() {
 
 
 
-                                <div className='flex justify-center items-center text-lg'>
-
-                                    <span>Veya</span>
-
+                                <div className='grid grid-flow-col items-center  text-lg'>
+                                    <span><hr /></span>  <span className='justify-center flex'>Veya</span> <span><hr /></span>
                                 </div>
+
 
                                 <a href='#' className='rounded-md shadow-lg  border w-full h-12 m-2 mt-10 flex items-center justify-center gap-2 hover:bg-gray-100'><FcGoogle /><p> Google ile giriş yap</p></a>
 
