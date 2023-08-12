@@ -27,7 +27,7 @@ This project incorporates the following technology and libraries:
 
 Clone the project code to your computer:
 
-git clone https://github.com/USERNAME/PROJECT-NAME.git
+git clone https://github.com/eraykarakasli/mahibinden.com-react.git
 cd PROJECT-NAME
 
 Install the required dependencies:
